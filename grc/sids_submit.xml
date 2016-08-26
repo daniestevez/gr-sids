@@ -1,0 +1,56 @@
+<?xml version="1.0"?>
+<block>
+  <name>Telemetry Forwarder</name>
+  <key>sids_submit</key>
+  <category>sids</category>
+  <import>import sids</import>
+  <make>sids.submit($url, $noradID, $source, $longitude, $latitude, $realtime, $initialTimestamp)</make>
+  <param>
+    <name>URL</name>
+    <key>url</key>
+    <type>string</type>
+  </param>
+  <param>
+    <name>NORAD ID</name>
+    <key>noradID</key>
+    <type>int</type>
+  </param>
+  <param>
+    <name>Receiver callsign</name>
+    <key>source</key>
+    <type>string</type>
+  </param>
+    <param>
+    <name>Latitude (N is +, S is -)</name>
+    <key>latitude</key>
+    <type>float</type>
+  </param>
+  <param>
+    <name>Longitude (W is -, E is +)</name>
+    <key>longitude</key>
+    <type>float</type>
+  </param>
+  <param>
+    <name>Realtime processing</name>
+    <key>realtime</key>
+    <type>bool</type>
+    <option>
+      <name>Yes</name>
+      <key>True</key>
+    </option>
+    <option>
+      <name>No</name>
+      <key>False</key>
+    </option>
+  </param>
+  <param>
+    <name>Recording start timestamp</name>
+    <key>initialTimestamp</key>
+    <type>string</type>
+  </param>
+
+  <sink>
+    <name>in</name>
+    <type>message</type>
+  </sink>
+</block>

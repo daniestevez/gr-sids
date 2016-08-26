@@ -31,4 +31,5 @@ except ImportError:
 	pass
 
 # import any pure python here
+from submit import submit
 #
