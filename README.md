@@ -3,7 +3,7 @@ gr-sids is a set of GNUradio blocks designed to submit telemetry to a
 server using the Simple Downlink Share Convention (SiDS) protocol. This is the
 same protocol that it is used by the DK3WN Telemetry Forwarder
 http://www.pe0sat.vgnet.nl/decoding/tlm-decoding-software/dk3wn/
-This blocks can be used to sumbit telemetry to the PE0SAT Telemetry Server
+These blocks can be used to sumbit telemetry to the PE0SAT Telemetry Server
 http://tlm.pe0sat.nl/
 or any other server implementing the SiDS protocol.
 
