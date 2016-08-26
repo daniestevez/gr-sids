@@ -36,4 +36,8 @@ You need to provide the following parameters to the telemetry forwarder blocks:
 For the **recording** block you also have to provide the start of the recording
 in UTC. The format is YYYY-MM-DD HH:MM:SS.
 
-
+The blocks expect PDUs containing the telemetry packets. For AX.25 telemetry,
+these should be PDUs containing full AX.25 frames (without the CRC-16), **not
+KISS frames**. If you're using gr-kiss (https://github.com/daniestevez/gr-kiss)
+you can connect the telemetry forwarder directly to the output of the HDLC
+deframer block, which outputs PDUs in the correct format.
