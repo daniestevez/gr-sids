@@ -50,7 +50,7 @@ class submit(gr.basic_block):
                          'locator': 'longLat',\
                          'longitude': str(abs(longitude)) + ('E' if longitude >= 0 else 'W'),\
                          'latitude': str(abs(latitude)) + ('N' if latitude >= 0 else 'S'),\
-                         'version': '0.6.6' }
+                         'version': '1.6.6' }
         dtformat = '%Y-%m-%d %H:%M:%S'
         self.initialTimestamp = datetime.datetime.strptime(initialTimestamp, dtformat) \
             if initialTimestamp else None
