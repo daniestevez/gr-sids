@@ -18,6 +18,5 @@
 # Boston, MA 02110-1301, USA.
 
 install(FILES
-    sids_submit_realtime.xml
-    sids_submit_recording.xml DESTINATION share/gnuradio/grc/blocks
+    sids_submit.xml DESTINATION share/gnuradio/grc/blocks
 )

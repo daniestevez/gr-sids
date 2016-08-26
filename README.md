@@ -7,14 +7,16 @@ These blocks can be used to sumbit telemetry to the PE0SAT Telemetry Server
 http://tlm.pe0sat.nl/
 or any other server implementing the SiDS protocol.
 
-Currently there are two forwarder blocks, the **realtime** block and the
-**recording** block.
+Currently there is only one block, the **Telemetry Forwarder**.
 
-The **realtime** block is used to submit telemetry as it is being received in
+There are two methods to submit telemetry, the **realtime** method and the
+**recording** method.
+
+The **realtime** method is used to submit telemetry as it is being received in
 real time. It will take the packet timestamps from your system clock, so you
 must ensure that it is accurate.
 
-The **recording** block is used to submit telemetry from a recording that is
+The **recording** method is used to submit telemetry from a recording that is
 processed at any moment after it was made. You need to know the date and time at
 which the recorded started. You also need to play back the recording at 1x
 (realtime) speed. For this, you will usually need to put a Throttle block with a
@@ -22,6 +24,9 @@ rate equal to the sample rate of the recording. The telemetry forwarder is then
 able to calculate the correct timestamps for the packets by taking into account
 the elapsed time that the GNUradio flowgraph has being running and the timestamp
 for the recording start (which you have to provide).
+
+The **realtime** method will be used unless you specify a recording start
+timestamp.
 
 You need to provide the following parameters to the telemetry forwarder blocks:
 
@@ -33,7 +38,7 @@ You need to provide the following parameters to the telemetry forwarder blocks:
     format is as in 41.82748 or -23.84850. Positive coordinates are North or
     East. Negative coordinates are South or West.
 
-For the **recording** block you also have to provide the start of the recording
+For the **recording** method you also have to provide the start of the recording
 in UTC. The format is YYYY-MM-DD HH:MM:SS.
 
 The blocks expect PDUs containing the telemetry packets. For AX.25 telemetry,

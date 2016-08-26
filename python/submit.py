@@ -38,7 +38,7 @@ class submit(gr.basic_block):
     """
     docstring for block submit
     """
-    def __init__(self, url, noradID, source, longitude, latitude, initialTimestamp=None):
+    def __init__(self, url, noradID, source, longitude, latitude, initialTimestamp):
         gr.basic_block.__init__(self,
             name="submit",
             in_sig=[],
@@ -53,7 +53,7 @@ class submit(gr.basic_block):
                          'version': '1.6.6' }
         dtformat = '%Y-%m-%d %H:%M:%S'
         self.initialTimestamp = datetime.datetime.strptime(initialTimestamp, dtformat) \
-            if initialTimestamp else None
+            if initialTimestamp != '' else None
         self.startTimestamp = datetime.datetime.utcnow()
         
         self.message_port_register_in(pmt.intern('in'))
@@ -61,6 +61,12 @@ class submit(gr.basic_block):
         
 
     def handle_msg(self, msg_pmt):
+        # check that callsign and QTH have been entered
+        if self.request['source'] == '':
+            return
+        if self.request['longitude'] == 0.0 and self.request['latitude'] == 0.0:
+            return
+
         msg = pmt.cdr(msg_pmt)
         if not pmt.is_u8vector(msg):
             print "[ERROR] Received invalid message type. Expected u8vector"
@@ -73,7 +79,7 @@ class submit(gr.basic_block):
         timestamp = now - self.startTimestamp + self.initialTimestamp \
           if self.initialTimestamp else now
         self.request['timestamp'] = timestamp.isoformat()[:-3] + 'Z'
-            
+
         params = urllib.urlencode(self.request)
         f = urllib.urlopen('{}?{}'.format(self.url, params), data=params)
         reply = f.read()

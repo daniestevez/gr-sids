@@ -1,10 +1,10 @@
 <?xml version="1.0"?>
 <block>
-  <name>Realtime Telemetry Forwarder</name>
-  <key>sids_submit_realtime</key>
+  <name>Telemetry Forwarder</name>
+  <key>sids_submit</key>
   <category>sids</category>
   <import>import sids</import>
-  <make>sids.submit($url, $noradID, $source, $longitude, $latitude)</make>
+  <make>sids.submit($url, $noradID, $source, $longitude, $latitude, $tstamp)</make>
   <param>
     <name>URL</name>
     <key>url</key>
@@ -29,6 +29,12 @@
     <name>Longitude (W is -, E is +)</name>
     <key>longitude</key>
     <type>float</type>
+  </param>
+  <param>
+    <name>Start of recording UTC (blank for realtime)</name>
+    <key>tstamp</key>
+    <value></value>
+    <type>string</type>
   </param>
 
   <sink>
