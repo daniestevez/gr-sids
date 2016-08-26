@@ -38,7 +38,7 @@ class submit(gr.basic_block):
     """
     docstring for block submit
     """
-    def __init__(self, url, noradID, source, longitude, latitude, realtime, initialTimestamp):
+    def __init__(self, url, noradID, source, longitude, latitude, initialTimestamp=None):
         gr.basic_block.__init__(self,
             name="submit",
             in_sig=[],
@@ -51,8 +51,10 @@ class submit(gr.basic_block):
                          'longitude': str(abs(longitude)) + ('E' if longitude >= 0 else 'W'),\
                          'latitude': str(abs(latitude)) + ('N' if latitude >= 0 else 'S'),\
                          'version': '0.6.6' }
-        self.realtime = realtime
-        self.initialTimestamp = initialTimestamp
+        dtformat = '%Y-%m-%d %H:%M:%S'
+        self.initialTimestamp = datetime.datetime.strptime(initialTimestamp, dtformat) \
+            if initialTimestamp else None
+        self.startTimestamp = datetime.datetime.utcnow()
         
         self.message_port_register_in(pmt.intern('in'))
         self.set_msg_handler(pmt.intern('in'), self.handle_msg)
@@ -64,11 +66,14 @@ class submit(gr.basic_block):
             print "[ERROR] Received invalid message type. Expected u8vector"
             return
 
-        
         self.request['frame'] = \
           binascii.b2a_hex(str(bytearray(pmt.u8vector_elements(msg)))).upper()
-        # TODO: non-realtime recording
-        self.request['timestamp'] = datetime.datetime.utcnow().isoformat()[:-3] + 'Z'
+        
+        now = datetime.datetime.utcnow()
+        timestamp = now - self.startTimestamp + self.initialTimestamp \
+          if self.initialTimestamp else now
+        self.request['timestamp'] = timestamp.isoformat()[:-3] + 'Z'
+            
         params = urllib.urlencode(self.request)
         f = urllib.urlopen('{}?{}'.format(self.url, params), data=params)
         reply = f.read()
