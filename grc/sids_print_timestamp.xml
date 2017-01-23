@@ -9,7 +9,7 @@
    <param>
     <name>Format</name>
     <key>fmt</key>
-    <value>%Y-%m-%d %H:%m:%S</value>
+    <value>%Y-%m-%d %H:%M:%S</value>
     <type>string</type>
   </param>
   
