@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<block>
+  <name>Print timestamp</name>
+  <key>sids_print_timestamp</key>
+  <category>[sids]</category>
+  <import>import sids</import>
+  <make>sids.print_timestamp($fmt)</make>
+
+   <param>
+    <name>Format</name>
+    <key>fmt</key>
+    <value>%Y-%m-%d %H:%m:%S</value>
+    <type>string</type>
+  </param>
+  
+  <sink>
+    <name>in</name>
+    <type>message</type>
+  </sink>
+
+  <source>
+    <name>out</name>
+    <type>message</type>
+  </source>
+</block>

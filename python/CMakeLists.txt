@@ -31,7 +31,8 @@ endif()
 GR_PYTHON_INSTALL(
     FILES
     __init__.py
-    submit.py DESTINATION ${GR_PYTHON_DIR}/sids
+    submit.py
+    print_timestamp.py DESTINATION ${GR_PYTHON_DIR}/sids
 )
 
 ########################################################################

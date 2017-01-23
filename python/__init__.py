@@ -32,4 +32,5 @@ except ImportError:
 
 # import any pure python here
 from submit import submit
+from print_timestamp import print_timestamp
 #

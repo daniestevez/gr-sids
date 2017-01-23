@@ -18,5 +18,6 @@
 # Boston, MA 02110-1301, USA.
 
 install(FILES
-    sids_submit.xml DESTINATION share/gnuradio/grc/blocks
+    sids_submit.xml
+    sids_print_timestamp.xml DESTINATION share/gnuradio/grc/blocks
 )
