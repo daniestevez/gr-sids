@@ -1,4 +1,9 @@
 # gr-sids
+
+**THIS OOT MODULE HAS BEEN DEPRECATED**
+
+The contents of the module are now included in [gr-satellites](https://github.com/daniestevez/gr-satellites). Please install and use gr-satellites instead of this repository.
+
 gr-sids is a set of GNUradio blocks designed to submit telemetry to a
 server using the Simple Downlink Share Convention (SiDS) protocol. This is the
 same protocol that it is used by the DK3WN Telemetry Forwarder
